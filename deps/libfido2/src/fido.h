@@ -21,7 +21,7 @@
 #include "blob.h"
 #include "../openbsd-compat/openbsd-compat.h"
 #include "iso7816.h"
-#include "extern.h"
+#include "external.h"
 #endif
 
 #include "fido/err.h"
