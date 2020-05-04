@@ -3,6 +3,8 @@ Revision history for FIDO-Raw
 {{$NEXT}}
 
  - Update to libfido2 9a0c852
+ - Added Cred methods:
+   - aaguid()
 
 0.01      2020-05-04 13:26:18+01:00 Europe/London
 
