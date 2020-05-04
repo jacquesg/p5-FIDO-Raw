@@ -314,6 +314,25 @@ id (self)
 	OUTPUT: RETVAL
 
 SV *
+aaguid (self)
+	Cred self
+
+	PREINIT:
+		const unsigned char *ptr;
+		size_t len;
+
+	CODE:
+		ptr = fido_cred_aaguid_ptr (self);
+		if (ptr == NULL)
+			XSRETURN_UNDEF;
+
+		len = fido_cred_aaguid_len (self);
+
+		RETVAL = newSVpv ((const char *)ptr, len);
+
+	OUTPUT: RETVAL
+
+SV *
 pubkey (self)
 	Cred self
 

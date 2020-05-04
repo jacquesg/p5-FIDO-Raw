@@ -92,6 +92,10 @@ Get the authenticator data flags.
 
 Get the credential ID.
 
+=head2 aaguid( )
+
+Get the authenticator attestation GUID.
+
 =head2 pubkey( )
 
 Get the public key.

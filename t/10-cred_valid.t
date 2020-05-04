@@ -26,8 +26,12 @@ is length ($k), length ($pubkey);
 my $i = $c->id();
 is length ($i), length ($id);
 
+my $g = $c->aaguid();
+is length ($g), length ($aaguid);
+
 is $k, $pubkey, "dump: ".unpackit ($k);
 is $i, $id, "dump: ".unpackit ($i);
+is $g, $aaguid, "dump: ".unpackit ($g);
 
 done_testing;
 
