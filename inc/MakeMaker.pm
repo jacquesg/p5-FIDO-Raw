@@ -341,15 +341,18 @@ push @fido2srcs, 'hid_osx.c' if ($is_osx);
 push @fido2srcs, 'hid_win.c' if ($is_windows);
 push @fido2srcs, 'hid_win.c' if ($is_windows);
 
+my @hidapisrcs;
 if ($is_bsd && !$is_openbsd)
 {
-	$def .= ' -DUSE_HIDAPI';
-	$lib .= ' -lhidapi';
 	push @fido2srcs, 'hid_hidapi.c';
+	push @hidapisrcs, 'deps/hidapi/libusb/hid.c';
+
+	$def .= ' -DUSE_HIDAPI';
+	$lib .= ' -lusb -liconv';
 }
 
 my @srcs = ((map { "deps/libfido2/openbsd-compat/$_" } @fido2compat), (map { "deps/libfido2/src/$_" } @fido2srcs));
-my @objs = map { substr ($_, 0, -1) . 'o' } (@cborsrcs, @srcs);
+my @objs = map { substr ($_, 0, -1) . 'o' } (@cborsrcs, @srcs, @hidapisrcs);
 
 sub MY::c_o {
 	my $out_switch = '-o ';
@@ -534,7 +537,7 @@ TEMPLATE
 override _build_WriteMakefile_args => sub {
 	return +{
 		%{ super() },
-		INC	    => ' -Ideps/config -Ideps/libcbor/src -Ideps/libfido2 -Ideps/libfido2/src',
+		INC	    => ' -Ideps/config -Ideps/libcbor/src -Ideps/libfido2 -Ideps/libfido2/src -Ideps/hidapi -Ideps/hidapi/hidapi',
 		OBJECT	=> '$(O_FILES)',
 	}
 };
