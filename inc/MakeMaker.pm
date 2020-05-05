@@ -28,6 +28,7 @@ my $is_windows = ($^O =~ /MSWin32/i) ? 1 : 0;
 my $is_linux = ($^O =~ /linux/i) ? 1 : 0;
 my $is_osx = ($^O =~ /darwin/i) ? 1 : 0;
 my $is_freebsd = ($^O =~ /freebsd/i) ? 1 : 0;
+my $is_openbsd = ($^O =~ /openbsd/i) ? 1 : 0;
 my $is_gkfreebsd = ($^O =~ /gnukfreebsd/i) ? 1 : 0;
 my $is_netbsd = ($^O =~ /netbsd/i) ? 1 : 0;
 my $is_bsd = ($^O =~ /bsd/i) ? 1 : 0;
@@ -330,6 +331,7 @@ my @fido2srcs = (qw/
 /);
 
 push @fido2srcs, 'hid_linux.c' if ($is_linux);
+push @fido2srcs, 'hid_openbsd.c' if ($is_openbsd);
 push @fido2srcs, 'hid_osx.c' if ($is_osx);
 push @fido2srcs, 'hid_win.c' if ($is_windows);
 
