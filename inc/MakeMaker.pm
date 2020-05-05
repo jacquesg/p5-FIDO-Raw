@@ -339,10 +339,9 @@ push @fido2srcs, 'hid_linux.c' if ($is_linux);
 push @fido2srcs, 'hid_openbsd.c' if ($is_openbsd);
 push @fido2srcs, 'hid_osx.c' if ($is_osx);
 push @fido2srcs, 'hid_win.c' if ($is_windows);
-push @fido2srcs, 'hid_win.c' if ($is_windows);
 
 my @hidapisrcs;
-if ($is_bsd && !$is_openbsd)
+if ($is_bsd && !$is_openbsd && !$is_windows)
 {
 	push @fido2srcs, 'hid_hidapi.c';
 	push @hidapisrcs, 'deps/hidapi/libusb/hid.c';
