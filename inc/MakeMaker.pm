@@ -217,7 +217,12 @@ if ($is_bsd || $is_osx)
 
 if ($is_bsd || $is_osx || $is_linux)
 {
-	$def .= ' -DHAVE_GETRANDOM -DHAVE_GETPAGESIZE -DHAVE_SYSCONF';
+	$def .= ' -DHAVE_GETPAGESIZE -DHAVE_SYSCONF';
+}
+
+if ($is_osx || $is_linux)
+{
+	$def .= ' -DHAVE_GETRANDOM';
 }
 
 if ($is_msvc)
