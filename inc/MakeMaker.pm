@@ -186,7 +186,7 @@ if (!$is_windows)
 	$def .= ' -DHAVE_SIGNAL_H -DHAVE_UNISTD_H -DHAVE_DEV_URANDOM';
 }
 
-if ($is_linux || $is_freebsd)
+if ($is_linux)
 {
 	$def .= ' -DHAVE_ENDIAN_H';
 }
