@@ -2,6 +2,9 @@ Revision history for FIDO-Raw
 
 {{$NEXT}}
 
+ - Fixed issue with FreeBSD 11 and older
+ - Detect DragonFlyBSD
+
 0.02      2020-05-05 13:05:11+01:00 Europe/London
 
  - Update to libfido2 9a0c852
