@@ -31,7 +31,7 @@ my $is_freebsd = ($^O =~ /freebsd/i) ? 1 : 0;
 my $is_openbsd = ($^O =~ /openbsd/i) ? 1 : 0;
 my $is_gkfreebsd = ($^O =~ /gnukfreebsd/i) ? 1 : 0;
 my $is_netbsd = ($^O =~ /netbsd/i) ? 1 : 0;
-my $is_bsd = ($^O =~ /bsd/i) ? 1 : 0;
+my $is_bsd = ($^O =~ /bsd/i || $^O =~ /dragonfly/i) ? 1 : 0;
 
 # allow the user to override/specify the locations of OpenSSL, libssh2
 our $opt = {};
