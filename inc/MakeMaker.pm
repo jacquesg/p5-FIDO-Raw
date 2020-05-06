@@ -33,6 +33,12 @@ my $is_gkfreebsd = ($^O =~ /gnukfreebsd/i) ? 1 : 0;
 my $is_netbsd = ($^O =~ /netbsd/i) ? 1 : 0;
 my $is_bsd = ($^O =~ /bsd/i || $^O =~ /dragonfly/i) ? 1 : 0;
 
+my $freebsd_version;
+if ($is_freebsd)
+{
+	$freebsd_version = int ((split (/\./, $Config{osvers}))[0]);
+}
+
 # allow the user to override/specify the locations of OpenSSL, libssh2
 our $opt = {};
 
@@ -209,9 +215,13 @@ if ($is_osx)
 	$lddlfags .= ' -framework CoreFoundation -framework Security';
 }
 
-if ($is_bsd || $is_osx)
+if ($is_osx || ($is_freebsd && $freebsd_version >= 12))
 {
 	$def .= ' -D__STDC_WANT_LIB_EXT1__=1 -DHAVE_MEMSET_S';
+}
+
+if ($is_bsd || $is_osx)
+{
 	$def .= ' -DHAVE_STRLCAT -DHAVE_STRLCPY';
 }
 
