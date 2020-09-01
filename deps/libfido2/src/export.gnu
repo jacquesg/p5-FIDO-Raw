@@ -76,6 +76,8 @@
 		fido_cbor_info_extensions_ptr;
 		fido_cbor_info_free;
 		fido_cbor_info_maxmsgsiz;
+		fido_cbor_info_maxcredcntlst;
+		fido_cbor_info_maxcredidlen;
 		fido_cbor_info_fwversion;
 		fido_cbor_info_new;
 		fido_cbor_info_options_len;
@@ -157,6 +159,9 @@
 		fido_dev_get_assert;
 		fido_dev_get_cbor_info;
 		fido_dev_get_retry_count;
+		fido_dev_get_touch_begin;
+		fido_dev_get_touch_status;
+		fido_dev_has_pin;
 		fido_dev_info_free;
 		fido_dev_info_manifest;
 		fido_dev_info_manufacturer_string;
@@ -177,6 +182,8 @@
 		fido_dev_set_io_functions;
 		fido_dev_set_pin;
 		fido_dev_set_transport_functions;
+		fido_dev_supports_cred_prot;
+		fido_dev_supports_pin;
 		fido_init;
 		fido_set_log_handler;
 		fido_strerr;

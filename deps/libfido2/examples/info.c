@@ -4,17 +4,14 @@
  * license that can be found in the LICENSE file.
  */
 
-#include <openssl/ec.h>
-
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "../openbsd-compat/openbsd-compat.h"
-
 #include "fido.h"
+#include "../openbsd-compat/openbsd-compat.h"
 
 /*
  * Pretty-print a device's capabilities flags and return the result.
@@ -131,6 +128,26 @@ print_maxmsgsiz(uint64_t maxmsgsiz)
 }
 
 /*
+ * Auxiliary function to print an authenticator's maximum number of credentials
+ * in a credential list on stdout.
+ */
+static void
+print_maxcredcntlst(uint64_t maxcredcntlst)
+{
+	printf("maxcredcntlst: %d\n", (int)maxcredcntlst);
+}
+
+/*
+ * Auxiliary function to print an authenticator's maximum credential ID length
+ * on stdout.
+ */
+static void
+print_maxcredidlen(uint64_t maxcredidlen)
+{
+	printf("maxcredlen: %d\n", (int)maxcredidlen);
+}
+
+/*
  * Auxiliary function to print an authenticator's firmware version on stdout.
  */
 static void
@@ -198,6 +215,12 @@ getinfo(const char *path)
 
 	/* print maximum message size */
 	print_maxmsgsiz(fido_cbor_info_maxmsgsiz(ci));
+
+	/* print maximum number of credentials allowed in credential lists */
+	print_maxcredcntlst(fido_cbor_info_maxcredcntlst(ci));
+
+	/* print maximum length of a credential ID */
+	print_maxcredidlen(fido_cbor_info_maxcredidlen(ci));
 
 	/* print firmware version */
 	print_fwversion(fido_cbor_info_fwversion(ci));
