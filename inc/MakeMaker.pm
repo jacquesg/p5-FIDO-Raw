@@ -205,13 +205,13 @@ if ($is_linux && $is_bsd)
 
 if ($is_linux)
 {
-	$def .= ' -DHAVE_SYS_RANDOM_H';
+	$def .= ' -DHAVE_SYS_RANDOM_H -DHAVE_CLOCK_GETTIME';
 	$lib .= ' -ludev';
 }
 
 if ($is_osx)
 {
-	$def .= ' -DHAVE_ARC4RANDOM_BUF -DTLS=__thread';
+	$def .= ' -DHAVE_ARC4RANDOM_BUF -DHAVE_CLOCK_GETTIME -DTLS=__thread';
 	$lddlfags .= ' -framework CoreFoundation -framework Security';
 }
 
