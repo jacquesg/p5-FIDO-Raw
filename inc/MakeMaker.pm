@@ -351,7 +351,6 @@ my @fido2srcs = (qw/
 	cbor.c
 	cred.c
 	credman.c
-	dev.c
 	ecdh.c
 	eddsa.c
 	err.c
@@ -367,16 +366,16 @@ my @fido2srcs = (qw/
 	hid.c
 /);
 
-push @fido2srcs, 'hid_linux.c' if ($is_linux && $library_opts{udev}{use});
-push @fido2srcs, 'hid_openbsd.c' if ($is_openbsd);
-push @fido2srcs, 'hid_osx.c' if ($is_osx);
-push @fido2srcs, 'hid_win.c' if ($is_windows);
+push @fido2srcs, 'dev.c', 'hid_linux.c' if ($is_linux && $library_opts{udev}{use});
+push @fido2srcs, 'dev.c', 'hid_openbsd.c' if ($is_openbsd);
+push @fido2srcs, 'dev.c', 'hid_osx.c' if ($is_osx);
+push @fido2srcs, 'dev.c', 'hid_win.c' if ($is_windows);
 
 
 my @hidapisrcs;
 if ($is_bsd && !$is_openbsd && !$is_windows && !$is_osx || ($is_linux && !$library_opts{udev}{use} && $library_opts{usb}{use}))
 {
-	push @fido2srcs, 'hid_hidapi.c';
+	push @fido2srcs, 'dev.c', 'hid_hidapi.c';
 	push @hidapisrcs, 'deps/hidapi/libusb/hid.c';
 
 	$def .= ' -DUSE_HIDAPI';
